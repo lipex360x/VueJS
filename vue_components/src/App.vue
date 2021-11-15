@@ -1,6 +1,7 @@
 <template>
   <h1>Hello Vue</h1>
-  <ButtonStyled />
+  <ButtonStyled text="Save" color="danger" :user="user" />
+  <ButtonStyled :user="user" />
 </template>
 
 <script lang="ts">
@@ -9,14 +10,22 @@ import { defineComponent } from 'vue'
 import ButtonStyled from '@/components/ButtonStyled.vue'
 
 export default defineComponent({
-  components: { ButtonStyled }
+  components: { ButtonStyled },
+  data() {
+    return {
+      user: {
+        id: 1,
+        name: 'John'
+      }
+    }
+  }
 })
 </script>
 
 <style scoped>
 .buttonStyled {
-  position: absolute;
-  top: 15%;
+  /* css here */
+  border: 1px solid blue;
 }
 
 ::v-deep.buttonStyled span {
