@@ -1,7 +1,9 @@
 <template>
   <button :class="['buttonStyled', color]">
+    <slot name="before" />
     {{ text }}
     {{ user.name }}
+    <slot name="after" />
   </button>
 </template>
 

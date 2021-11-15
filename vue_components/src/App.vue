@@ -1,7 +1,15 @@
 <template>
   <h1>Hello Vue</h1>
-  <ButtonStyled text="Save" color="danger" :user="user" />
-  <ButtonStyled :user="user" />
+  <ButtonStyled text="Save" color="danger" :user="user">
+    <template v-slot:before>
+      <i class="fab fa-accusoft"></i>
+    </template>
+
+    <template v-slot:after>
+      <i class="fab fa-500px"></i>
+    </template>
+  </ButtonStyled>
+  <ButtonStyled :user="{ name: 'Doe' }" />
 </template>
 
 <script lang="ts">
