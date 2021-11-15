@@ -1,10 +1,13 @@
 <template>
-  <a :href="products.url" :class="productClass">
+  <!-- v-on = @ = event handler -->
+  <a :href="products.url" :class="productClass" @click.prevent="redirect">
     {{ products.name }}
   </a>
 
   <p v-text="products.name" />
   <p v-html="products.textStar" />
+
+  <input type="text" @keyup="keyPressed" />
 </template>
 
 <script lang="ts">
@@ -15,7 +18,7 @@ export default defineComponent({
     return {
       products: {
         name: 'Camisa',
-        url: 'http://loja.com/camisa',
+        url: '#local',
         textStar: '<b>Beautiful</b>',
         available: true
       }
@@ -24,6 +27,15 @@ export default defineComponent({
   computed: {
     productClass(): string {
       return this.products.available ? 'success' : 'danger'
+    }
+  },
+  methods: {
+    redirect() {
+      console.log('redirect')
+    },
+
+    keyPressed(value: string) {
+      console.log(value)
     }
   }
 })
