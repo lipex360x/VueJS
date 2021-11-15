@@ -3,7 +3,8 @@
     {{ products.name }}
   </a>
 
-  <p v-text="products.name"></p>
+  <p v-text="products.name" />
+  <p v-html="products.textStar" />
 </template>
 
 <script lang="ts">
@@ -15,6 +16,7 @@ export default defineComponent({
       products: {
         name: 'Camisa',
         url: 'http://loja.com/camisa',
+        textStar: '<b>Beautiful</b>',
         available: true
       }
     }
