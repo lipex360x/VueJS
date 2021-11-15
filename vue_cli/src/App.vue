@@ -6,6 +6,12 @@
   </ul>
 
   <button @click="checkAllTodos">Finish</button>
+  <button @click="destroyComponent">Destroy</button>
+
+  <hr />
+
+  <h2>{{ count }}</h2>
+  <button @click="increase">Add</button>
 </template>
 
 <script lang="ts">
@@ -19,7 +25,8 @@ interface ITodoProps {
 export default defineComponent({
   data() {
     return {
-      todos: [] as ITodoProps[]
+      todos: [] as ITodoProps[],
+      count: 0
     }
   },
 
@@ -37,20 +44,59 @@ export default defineComponent({
     }
   },
 
+  methods: {
+    checkAllTodos() {
+      this.todos = this.todos.map(({ text }) => {
+        return { text, done: true }
+      })
+    },
+
+    increase() {
+      this.count++
+    },
+
+    destroyComponent() {
+      this.$.appContext.app.unmount()
+    }
+  },
+
+  // Life cicle Hooks
+  beforeCreate() {
+    console.log('beforeCreate', this.todos)
+  },
+
   created() {
     this.todos = [
       { text: 'Estudar Typescript', done: true },
       { text: 'Lavar os pratos', done: false },
       { text: 'Aprender Nuxt.js', done: true }
     ]
+
+    console.log('created', this.todos)
   },
 
-  methods: {
-    checkAllTodos() {
-      this.todos = this.todos.map(({ text }) => {
-        return { text, done: true }
-      })
-    }
+  beforeMount() {
+    console.log('beforeMount', this.$el)
+  },
+
+  mounted() {
+    console.log('mounted', this.$el)
+  },
+
+  beforeUpdate() {
+    console.log('beforeUpdate', this.count)
+  },
+
+  updated() {
+    console.log('updated', this.count)
+  },
+
+  beforeUnmount() {
+    console.log('beforeUnmount')
+  },
+
+  unmounted() {
+    console.log('unmounted')
   }
 })
 </script>
