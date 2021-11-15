@@ -1,19 +1,27 @@
 <template>
   <!-- v-on = @ = event handler -->
-  <a :href="products.url" :class="productClass" @click.prevent="redirect">
-    {{ products.name }}
+  <a :href="product.url" :class="productClass" @click.prevent="redirect">
+    {{ product.name }}
   </a>
 
-  <p v-text="products.name" />
-  <p v-html="products.textStar" />
+  <p v-text="product.name" />
+  <p v-html="product.textStar" />
 
   <input type="text" @keyup="keyPressed" />
 
   <hr />
 
-  <p v-once>Initial stock: {{ stock }}</p>
-  <p>Updated stock: {{ stock }}</p>
+  <p v-once>Initial stock: {{ product.stock }}</p>
+  <p>Updated stock: {{ product.stock }}</p>
   <button @click="increase">Increase Stock</button>
+  <button @click="decrease">Decrease Stock</button>
+
+  <hr />
+
+  <div>
+    <h1 v-if="statusBuy">Buy it?</h1>
+    <button v-show="statusBuy">Yes</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -22,18 +30,22 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data() {
     return {
-      products: {
+      product: {
         name: 'Camisa',
         url: '#local',
         textStar: '<b>Beautiful</b>',
-        available: true
-      },
-      stock: 1
+        available: true,
+        stock: 1
+      }
     }
   },
   computed: {
     productClass(): string {
-      return this.products.available ? 'success' : 'danger'
+      return this.product.available ? 'success' : 'danger'
+    },
+
+    statusBuy(): boolean {
+      return this.product.stock > 0 ? true : false
     }
   },
   methods: {
@@ -46,7 +58,11 @@ export default defineComponent({
     },
 
     increase() {
-      this.stock++
+      this.product.stock++
+    },
+
+    decrease() {
+      if (this.product.stock >= 0) this.product.stock--
     }
   }
 })
