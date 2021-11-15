@@ -8,6 +8,12 @@
   <p v-html="products.textStar" />
 
   <input type="text" @keyup="keyPressed" />
+
+  <hr />
+
+  <p v-once>Initial stock: {{ stock }}</p>
+  <p>Updated stock: {{ stock }}</p>
+  <button @click="increase">Increase Stock</button>
 </template>
 
 <script lang="ts">
@@ -21,7 +27,8 @@ export default defineComponent({
         url: '#local',
         textStar: '<b>Beautiful</b>',
         available: true
-      }
+      },
+      stock: 1
     }
   },
   computed: {
@@ -34,8 +41,12 @@ export default defineComponent({
       console.log('redirect')
     },
 
-    keyPressed(value: string) {
-      console.log(value)
+    keyPressed() {
+      console.log('key pressed')
+    },
+
+    increase() {
+      this.stock++
     }
   }
 })
