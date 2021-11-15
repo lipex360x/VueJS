@@ -68,6 +68,13 @@
     <p>Cor: {{ form.color }}</p>
     <p>Fruta: {{ form.fruit }}</p>
   </div>
+  <hr />
+
+  <!-- custom directive -->
+  <div>
+    <h2 v-highlight:background.shadow="'green'">Custom Directive</h2>
+    <h3 v-highlight="'blue'">Lorem Ipsum</h3>
+  </div>
 </template>
 
 <script lang="ts">

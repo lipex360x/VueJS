@@ -1,4 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import highlight from '@/directives/highlight'
+
+const app = createApp(App)
+
+app.directive('highlight', highlight)
+
+app.mount('#app')
