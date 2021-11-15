@@ -1,7 +1,7 @@
 <template>
   <h1>{{ fullName }}</h1>
 
-  <h2>{{ count }}</h2>
+  <h2>{{ countValue }}</h2>
   <button @click="increment">Add</button>
   <button @click="decrease">Del</button>
   <button @click="reset">reset</button>
@@ -15,7 +15,7 @@ export default defineComponent({
     return {
       name: 'Hello',
       lastname: 'World',
-      count: 0
+      countValue: 0
     }
   },
 
@@ -27,13 +27,20 @@ export default defineComponent({
 
   methods: {
     increment() {
-      this.count++
+      this.countValue++
     },
     decrease() {
-      this.count--
+      this.countValue--
     },
     reset() {
-      this.count = 0
+      this.countValue = 0
+    }
+  },
+
+  watch: {
+    countValue(newValue, oldValue) {
+      console.log(newValue)
+      console.log(oldValue)
     }
   }
 })
