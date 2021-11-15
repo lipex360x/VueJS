@@ -1,5 +1,5 @@
 <template>
-  <button>Botão estilizado</button>
+  <button class="buttonStyled">Botão <span>estilizado</span></button>
 </template>
 
 <script lang="ts">
@@ -9,7 +9,7 @@ export default defineComponent({})
 </script>
 
 <style scoped>
-button {
+.buttonStyled {
   color: #fff;
   border-radius: 0.3rem;
   padding: 0.5rem 1rem;

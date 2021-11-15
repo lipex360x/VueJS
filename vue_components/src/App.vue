@@ -12,3 +12,14 @@ export default defineComponent({
   components: { ButtonStyled }
 })
 </script>
+
+<style scoped>
+.buttonStyled {
+  position: absolute;
+  top: 15%;
+}
+
+::v-deep.buttonStyled span {
+  color: red;
+}
+</style>
