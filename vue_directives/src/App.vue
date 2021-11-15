@@ -2,6 +2,8 @@
   <a :href="products.url" :class="productClass">
     {{ products.name }}
   </a>
+
+  <p v-text="products.name"></p>
 </template>
 
 <script lang="ts">
