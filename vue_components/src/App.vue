@@ -11,21 +11,36 @@
   </ButtonStyled>
 
   <ButtonStyled :user="{ name: 'Doe' }" @viewConsole="action($event)" />
+
+  <hr />
+
+  <ul>
+    <li @click="currentView = 'Home'">Home</li>
+    <li @click="currentView = 'About'">About</li>
+    <li @click="currentView = 'Contact'">Contact</li>
+  </ul>
+
+  <component :is="currentView" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import ButtonStyled from '@/components/ButtonStyled.vue'
+import Home from '@/pages/Home.vue'
+import About from '@/pages/About.vue'
+import Contact from '@/pages/Contact.vue'
 
 export default defineComponent({
-  components: { ButtonStyled },
+  components: { Home, About, Contact },
+
   data() {
     return {
       user: {
         id: 1,
         name: 'John'
-      }
+      },
+
+      currentView: 'Home'
     }
   },
 
