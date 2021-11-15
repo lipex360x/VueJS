@@ -9,7 +9,8 @@
       <i class="fab fa-500px"></i>
     </template>
   </ButtonStyled>
-  <ButtonStyled :user="{ name: 'Doe' }" />
+
+  <ButtonStyled :user="{ name: 'Doe' }" @viewConsole="action($event)" />
 </template>
 
 <script lang="ts">
@@ -25,6 +26,12 @@ export default defineComponent({
         id: 1,
         name: 'John'
       }
+    }
+  },
+
+  methods: {
+    action(event: string) {
+      console.log('action emited -', event)
     }
   }
 })

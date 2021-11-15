@@ -1,5 +1,8 @@
 <template>
-  <button :class="['buttonStyled', color]">
+  <button
+    :class="['buttonStyled', color]"
+    @click="$emit('viewConsole', 'component message text')"
+  >
     <slot name="before" />
     {{ text }}
     {{ user.name }}
