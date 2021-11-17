@@ -15,6 +15,27 @@
   >
     <h1 v-if="show">Vue Content</h1>
   </transition>
+  <hr />
+
+  <!-- hooks -->
+  <!-- 
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @enter-cancelled="enterCancelled"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    @leave-cancelled="leaveCancelled"
+    :css="false"
+     -->
+  <transition
+    @after-enter="beforeEnter"
+    enter-active-class="animate__animated animate__fadeInDown "
+    leave-active-class="animate__animated animate__fadeOutUp animate__faster"
+  >
+    <h1 v-if="show">Vue Content</h1>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -25,6 +46,13 @@ export default defineComponent({
   data() {
     return {
       show: false
+    }
+  },
+
+  methods: {
+    beforeEnter(element: HTMLElement) {
+      element.classList.add('test')
+      console.log(element)
     }
   }
 })
@@ -42,5 +70,8 @@ export default defineComponent({
   transition: opacity 0.3s;
 }
 
-/* custon */
+/* hooks */
+.test {
+  color: green;
+}
 </style>
