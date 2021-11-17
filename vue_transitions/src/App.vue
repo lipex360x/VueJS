@@ -62,6 +62,20 @@
   >
     <component :is="view" />
   </transition>
+  <hr />
+
+  <!-- list -->
+  <button @click="filter('A')">Filter A-Z</button>
+  <button @click="filter('Z')">Filter Z-A</button>
+
+  <transition-group
+    enter-active-class="animate__animated animate__fadeInDown "
+    leave-active-class="animate__animated animate__fadeOutUp animate__faster"
+    :appear="true"
+    mode="out-in"
+  >
+    <li v-for="user in users" :key="user">{{ user }}</li>
+  </transition-group>
 </template>
 
 <script lang="ts">
@@ -77,7 +91,8 @@ export default defineComponent({
   data() {
     return {
       show: false,
-      view: 'Home'
+      view: 'Home',
+      users: ['John', 'Due', 'Galt', 'Snow']
     }
   },
 
@@ -88,6 +103,10 @@ export default defineComponent({
 
     beforeLeave(element: HTMLElement) {
       element.classList.add('out')
+    },
+
+    filter(filter: string) {
+      filter == 'A' ? this.users.sort() : this.users.sort().reverse()
     }
   }
 })
@@ -112,5 +131,9 @@ export default defineComponent({
 
 .out {
   color: red;
+}
+
+.v-move {
+  transition: all 0.5s;
 }
 </style>
