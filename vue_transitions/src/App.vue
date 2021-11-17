@@ -12,6 +12,7 @@
   <transition
     enter-active-class="animate__animated animate__fadeInDown "
     leave-active-class="animate__animated animate__fadeOutUp animate__faster"
+    :appear="true"
   >
     <h1 v-if="show">Vue Content</h1>
   </transition>
@@ -35,6 +36,15 @@
     leave-active-class="animate__animated animate__fadeOutUp animate__faster"
   >
     <h1 v-if="show">Vue Content</h1>
+  </transition>
+  <hr />
+
+  <transition
+    enter-active-class="animate__animated animate__fadeInDown "
+    leave-active-class="animate__animated animate__fadeOutUp animate__faster"
+    :appear="true"
+  >
+    <h1 :v-if="true">Vue Content</h1>
   </transition>
 </template>
 
