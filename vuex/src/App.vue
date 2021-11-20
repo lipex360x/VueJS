@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <ul>
+    <li v-for="todo in $allTodos" :key="todo.id">
+      {{ todo.text }}
+
+      <button @click="deleteTodo(todo.id)">X</button>
+    </li>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    $allTodos() {
+      return this.$store.getters.$allTodos
+    }
+  },
+  created() {
+    this.$store.dispatch('fetchTodos')
+  },
+
+  methods: {
+    deleteTodo(id) {
+      this.$store.dispatch('deleteTodo', id)
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
